@@ -26,23 +26,23 @@ class SnortTestCase(unittest.TestCase, VNFAssertions):
         ip_address = ifconfig_output.splitlines()[1].split()[1].split(':')[1]
         return ip_address
 
-    def snort_time_to_timestamp(snort_time):
+    def snort_time_to_timestamp(self, snort_time):
+        time_format = '%Y/%m/%d-%H:%M:%S.%f'
         current_year = str(datetime.datetime.now().year)
         record_time = current_year + '/' + snort_time
         time_formatted = datetime.datetime.strptime(record_time, time_format)
         return time_formatted.timestamp()
 
     def get_alert_updates(self, start_time):
-        time_format = '%Y/%m/%d-%H:%M:%S.%f'
         two_hours_in_seconds = 7200
 
         result = []
 
-        commant = 'cat /snort-logs/alert'
+        command = 'cat /snort-logs/alert'
         alert_records = self.snort.exec_run(command).decode('utf-8')
         for record in alert_records.splitlines():
             record_time = record.split()[0]
-            record_time_formatted = snort_time_to_timestamp(record_time)
+            record_time_formatted = self.snort_time_to_timestamp(record_time)
             if record_time_formatted + two_hours_in_seconds > start_time:
                 result.append(record)
 
