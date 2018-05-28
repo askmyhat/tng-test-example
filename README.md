@@ -35,7 +35,7 @@ cd son-cli
 sudo python3 setup.py install
 ```
 
-Now we need to create and configure development workspace:
+After that we need to create and configure development workspace:
 
 ```shell
 # Create workspace in $HOME/.son-workspace
@@ -55,7 +55,7 @@ We need two extra instances to trigger snort rules.
 
 Server image is almost the same as `sonata_apache_server_vnf` with added static content.
 
-Client image could be any image which supports required for testing purposes functions. For example, if your requests are written in python, you can create your image as follows:
+Client image can be any image which supports required functions for testing purposes. For example, if your requests are written in python, you can create your image as follows:
 - use base image `python:onbuild`
 - add your code to the source directory
 - generate `requirements.txt` with `pipreqs <source directory>`
