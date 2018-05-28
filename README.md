@@ -96,5 +96,10 @@ son-emu-cli network add -b -src snort_vnf:output -dst server:server-eth0
 Run test:
 
 ```shell
-python3 -W ignore test_snort.py
+$ python3 -W ignore test_snort.py
+
+----------------------------------------------------------------------
+Ran 1 test in 2.582s
+
+OK
 ```
